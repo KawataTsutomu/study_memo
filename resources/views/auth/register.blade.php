@@ -12,11 +12,11 @@
                     <h2 class="h3 card-title text-center mt-2">ユーザー登録</h2>
 
                     <div class="card-text">
-                        <form method="post" action="{{route('register')}}"></form>
-                        @csrf
-                            <div class="md-fm">
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="md-form">
                                 <label for="name">ユーザー名</label>
-                                <input class="form-control" type="text" id="name" required value="{{ old('name') }}">
+                                <input class="form-control" type="text" id="name" name="name" required value="{{ old('name') }}">
                                 <small>英数字3〜16文字(登録後の変更はできません)</small>
                             </div>
                             <div class="md-form">
@@ -34,7 +34,7 @@
                             <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ユーザー登録</button>
                         </form>
 
-                        <div class=" mt-0">
+                        <div class="mt-0">
                             <a href="{{ route('login') }}" class="card-text">ログインはこちら</a>
                         </div>
 
