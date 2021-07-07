@@ -16,5 +16,9 @@
 |
 |--------------------------------------------------------------------------
 */
+// Auth関係
 Auth::routes();
-Route::get('/', 'ArticleController@index');
+// 記事一覧表示
+Route::get('/', 'ArticleController@index')->name('articles.index');
+// 記事投稿関係(ログインしないと利用できない)
+Route::resource('/articles', 'ArticleController')->except(['index'])->middleware('auth');;
