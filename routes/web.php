@@ -31,3 +31,7 @@ Route::prefix('articles')->name('articles.')->group(function () {
 });
 // タグ別記事一覧
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
+// ユーザーページ表示
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/{name}', 'UserController@show')->name('show');
+});
