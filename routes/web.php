@@ -18,6 +18,10 @@
 */
 // Auth関係
 Auth::routes();
+// Googleでログイン
+Route::prefix('login')->name('login.')->group(function () {
+    Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
+});
 // 記事一覧表示
 Route::get('/', 'ArticleController@index')->name('articles.index');
 // 記事投稿関係(ログインしないと利用できない)
