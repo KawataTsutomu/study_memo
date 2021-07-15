@@ -31,3 +31,15 @@ Route::prefix('articles')->name('articles.')->group(function () {
 });
 // タグ別記事一覧
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
+// ユーザーページ表示
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/{name}', 'UserController@show')->name('show');
+    Route::get('/{name}/likes', 'UserController@likes')->name('likes');
+    Route::get('/{name}/followings', 'UserController@followings')->name('followings');
+    Route::get('/{name}/followers', 'UserController@followers')->name('followers');
+// フォロー機能
+    Route::middleware('auth')->group(function () {
+        Route::put('/{name}/follow', 'UserController@follow')->name('follow');
+        Route::delete('/{name}/follow', 'UserController@unfollow')->name('unfollow');
+    });
+});
