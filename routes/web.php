@@ -18,11 +18,16 @@
 */
 // Auth関係
 Auth::routes();
-// Googleでログイン
+// Googleでログイン、ユーザー登録
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
     Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('{provider}.callback');
 });
+Route::prefix('register')->name('register.')->group(function () {
+    Route::get('/{provider}', 'Auth\RegisterController@showProviderUserRegistrationForm')->name('{provider}');
+    Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
+});
+
 // 記事一覧表示
 Route::get('/', 'ArticleController@index')->name('articles.index');
 // 記事投稿関係(ログインしないと利用できない)
